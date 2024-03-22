@@ -1,0 +1,290 @@
+public final class regolith/data/GetStringValue {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lregolith/data/GetStringValue;
+	public static synthetic fun copy$default (Lregolith/data/GetStringValue;Ljava/lang/String;ILjava/lang/Object;)Lregolith/data/GetStringValue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStringValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class regolith/data/SETTINGS {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Double;[B)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Long;
+	public final fun component4 ()Ljava/lang/Double;
+	public final fun component5 ()[B
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Double;[B)Lregolith/data/SETTINGS;
+	public static synthetic fun copy$default (Lregolith/data/SETTINGS;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/Double;[BILjava/lang/Object;)Lregolith/data/SETTINGS;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBlobValue ()[B
+	public final fun getIntValue ()Ljava/lang/Long;
+	public final fun getKey ()Ljava/lang/String;
+	public final fun getRealValue ()Ljava/lang/Double;
+	public final fun getStringValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class regolith/data/Settings : app/cash/sqldelight/SuspendingTransacter {
+	public static final field Companion Lregolith/data/Settings$Companion;
+	public abstract fun getSettingsQueries ()Lregolith/data/SettingsQueries;
+}
+
+public final class regolith/data/Settings$Companion {
+	public final fun getSchema ()Lapp/cash/sqldelight/db/SqlSchema;
+	public final fun invoke (Lapp/cash/sqldelight/db/SqlDriver;)Lregolith/data/Settings;
+}
+
+public final class regolith/data/SettingsQueries : app/cash/sqldelight/SuspendingTransacterImpl {
+	public fun <init> (Lapp/cash/sqldelight/db/SqlDriver;)V
+	public final fun getStringValue (Ljava/lang/String;)Lapp/cash/sqldelight/Query;
+	public final fun getStringValue (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lapp/cash/sqldelight/Query;
+	public final fun setStringValue (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class regolith/data/settings/Described {
+	public abstract fun getCategory ()Ljava/lang/String;
+	public abstract fun getDescription ()Ljava/lang/String;
+	public abstract fun getLevel ()Lregolith/data/settings/SettingLevel;
+	public abstract fun getName ()Ljava/lang/String;
+}
+
+public abstract interface class regolith/data/settings/Keyed {
+	public abstract fun getKey ()Ljava/lang/String;
+}
+
+public final class regolith/data/settings/SettingLevel : java/lang/Enum {
+	public static final field Advanced Lregolith/data/settings/SettingLevel;
+	public static final field Companion Lregolith/data/settings/SettingLevel$Companion;
+	public static final field Dev Lregolith/data/settings/SettingLevel;
+	public static final field Hidden Lregolith/data/settings/SettingLevel;
+	public static final field User Lregolith/data/settings/SettingLevel;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lregolith/data/settings/SettingLevel;
+	public static fun values ()[Lregolith/data/settings/SettingLevel;
+}
+
+public final class regolith/data/settings/SettingLevel$Companion {
+	public final fun getDEFAULT ()Lregolith/data/settings/SettingLevel;
+}
+
+public abstract interface class regolith/data/settings/SettingsAccess {
+	public abstract fun getSetting (Lregolith/data/settings/structure/PrimitiveSetting;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun observeSetting (Lregolith/data/settings/structure/PrimitiveSetting;)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun writeSetting (Lregolith/data/settings/structure/PrimitiveSetting;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class regolith/data/settings/SettingsAccessKt {
+	public static final fun getData (Lregolith/data/settings/SettingsAccess;Lregolith/data/settings/structure/DataSetting;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun observeData (Lregolith/data/settings/SettingsAccess;Lregolith/data/settings/structure/DataSetting;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun writeData (Lregolith/data/settings/SettingsAccess;Lregolith/data/settings/structure/DataSetting;Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class regolith/data/settings/SettingsModule {
+	public fun <init> (Ljava/io/File;Lkotlinx/coroutines/CoroutineScope;)V
+	public synthetic fun <init> (Ljava/io/File;Lkotlinx/coroutines/CoroutineScope;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getSettingsAccess ()Lregolith/data/settings/SettingsAccess;
+}
+
+public abstract interface class regolith/data/settings/UserInput {
+	public abstract fun getInputValidator ()Lregolith/data/settings/validators/InputValidator;
+}
+
+public abstract interface class regolith/data/settings/structure/DataSetting : regolith/data/settings/structure/Setting {
+	public abstract fun getDataTransformer ()Lregolith/data/settings/transformers/Transformer;
+	public abstract fun getDefaultValue ()Ljava/lang/Object;
+	public abstract fun getInputTransformer ()Lregolith/data/settings/transformers/Transformer;
+	public abstract fun toPrimitive ()Lregolith/data/settings/structure/PrimitiveSetting;
+}
+
+public abstract interface class regolith/data/settings/structure/PrimitiveSetting : regolith/data/settings/structure/Setting {
+	public abstract fun getDefaultValue ()Ljava/lang/Object;
+	public abstract fun getInputTransformer ()Lregolith/data/settings/transformers/Transformer;
+}
+
+public final class regolith/data/settings/structure/RequiredStringSetting : regolith/data/settings/structure/DataSetting {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/validators/InputValidator;Lregolith/data/settings/transformers/Transformer;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/validators/InputValidator;Lregolith/data/settings/transformers/Transformer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lregolith/data/settings/SettingLevel;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Lregolith/data/settings/validators/InputValidator;
+	public final fun component8 ()Lregolith/data/settings/transformers/Transformer;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/validators/InputValidator;Lregolith/data/settings/transformers/Transformer;)Lregolith/data/settings/structure/RequiredStringSetting;
+	public static synthetic fun copy$default (Lregolith/data/settings/structure/RequiredStringSetting;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/validators/InputValidator;Lregolith/data/settings/transformers/Transformer;ILjava/lang/Object;)Lregolith/data/settings/structure/RequiredStringSetting;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getCategory ()Ljava/lang/String;
+	public fun getDataTransformer ()Lregolith/data/settings/transformers/Transformer;
+	public synthetic fun getDefaultValue ()Ljava/lang/Object;
+	public fun getDefaultValue ()Ljava/lang/String;
+	public fun getDescription ()Ljava/lang/String;
+	public fun getInputTransformer ()Lregolith/data/settings/transformers/Transformer;
+	public fun getInputValidator ()Lregolith/data/settings/validators/InputValidator;
+	public fun getKey ()Ljava/lang/String;
+	public fun getLevel ()Lregolith/data/settings/SettingLevel;
+	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toPrimitive ()Lregolith/data/settings/structure/PrimitiveSetting;
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class regolith/data/settings/structure/Setting : regolith/data/settings/Described, regolith/data/settings/Keyed, regolith/data/settings/UserInput {
+}
+
+public final class regolith/data/settings/structure/SettingsCollection : java/util/Collection, kotlin/jvm/internal/markers/KMappedMarker {
+	public fun <init> (Ljava/util/Collection;)V
+	public synthetic fun add (Ljava/lang/Object;)Z
+	public fun add (Lregolith/data/settings/structure/Setting;)Z
+	public fun addAll (Ljava/util/Collection;)Z
+	public fun clear ()V
+	public final fun contains (Ljava/lang/Object;)Z
+	public fun contains (Lregolith/data/settings/structure/Setting;)Z
+	public fun containsAll (Ljava/util/Collection;)Z
+	public final fun findByKey (Ljava/lang/String;)Lregolith/data/settings/structure/Setting;
+	public fun getSize ()I
+	public final fun groupByCategory ()Ljava/util/List;
+	public final fun groupByLevel ()Ljava/util/List;
+	public fun isEmpty ()Z
+	public fun iterator ()Ljava/util/Iterator;
+	public fun remove (Ljava/lang/Object;)Z
+	public fun removeAll (Ljava/util/Collection;)Z
+	public fun removeIf (Ljava/util/function/Predicate;)Z
+	public fun retainAll (Ljava/util/Collection;)Z
+	public final fun size ()I
+	public fun toArray ()[Ljava/lang/Object;
+	public fun toArray ([Ljava/lang/Object;)[Ljava/lang/Object;
+}
+
+public final class regolith/data/settings/structure/StringData : regolith/data/settings/structure/DataSetting {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/transformers/Transformer;Ljava/lang/Object;Lregolith/data/settings/transformers/Transformer;Lregolith/data/settings/validators/InputValidator;Lregolith/data/settings/validators/InputValidator;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/transformers/Transformer;Ljava/lang/Object;Lregolith/data/settings/transformers/Transformer;Lregolith/data/settings/validators/InputValidator;Lregolith/data/settings/validators/InputValidator;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Lregolith/data/settings/SettingLevel;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lregolith/data/settings/transformers/Transformer;
+	public final fun component4 ()Ljava/lang/Object;
+	public final fun component5 ()Lregolith/data/settings/transformers/Transformer;
+	public final fun component6 ()Lregolith/data/settings/validators/InputValidator;
+	public final fun component7 ()Lregolith/data/settings/validators/InputValidator;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/transformers/Transformer;Ljava/lang/Object;Lregolith/data/settings/transformers/Transformer;Lregolith/data/settings/validators/InputValidator;Lregolith/data/settings/validators/InputValidator;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;)Lregolith/data/settings/structure/StringData;
+	public static synthetic fun copy$default (Lregolith/data/settings/structure/StringData;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/transformers/Transformer;Ljava/lang/Object;Lregolith/data/settings/transformers/Transformer;Lregolith/data/settings/validators/InputValidator;Lregolith/data/settings/validators/InputValidator;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;ILjava/lang/Object;)Lregolith/data/settings/structure/StringData;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getCategory ()Ljava/lang/String;
+	public fun getDataTransformer ()Lregolith/data/settings/transformers/Transformer;
+	public final fun getDataValidator ()Lregolith/data/settings/validators/InputValidator;
+	public fun getDefaultValue ()Ljava/lang/Object;
+	public fun getDescription ()Ljava/lang/String;
+	public fun getInputTransformer ()Lregolith/data/settings/transformers/Transformer;
+	public fun getInputValidator ()Lregolith/data/settings/validators/InputValidator;
+	public fun getKey ()Ljava/lang/String;
+	public fun getLevel ()Lregolith/data/settings/SettingLevel;
+	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toPrimitive ()Lregolith/data/settings/structure/PrimitiveSetting;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class regolith/data/settings/structure/StringSetting : regolith/data/settings/structure/PrimitiveSetting {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/transformers/Transformer;Lregolith/data/settings/validators/InputValidator;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/transformers/Transformer;Lregolith/data/settings/validators/InputValidator;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lregolith/data/settings/transformers/Transformer;
+	public final fun component5 ()Lregolith/data/settings/validators/InputValidator;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Lregolith/data/settings/SettingLevel;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/transformers/Transformer;Lregolith/data/settings/validators/InputValidator;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;)Lregolith/data/settings/structure/StringSetting;
+	public static synthetic fun copy$default (Lregolith/data/settings/structure/StringSetting;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/transformers/Transformer;Lregolith/data/settings/validators/InputValidator;Ljava/lang/String;Ljava/lang/String;Lregolith/data/settings/SettingLevel;ILjava/lang/Object;)Lregolith/data/settings/structure/StringSetting;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getCategory ()Ljava/lang/String;
+	public synthetic fun getDefaultValue ()Ljava/lang/Object;
+	public fun getDefaultValue ()Ljava/lang/String;
+	public fun getDescription ()Ljava/lang/String;
+	public fun getInputTransformer ()Lregolith/data/settings/transformers/Transformer;
+	public fun getInputValidator ()Lregolith/data/settings/validators/InputValidator;
+	public fun getKey ()Ljava/lang/String;
+	public fun getLevel ()Lregolith/data/settings/SettingLevel;
+	public fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class regolith/data/settings/transformers/DefaultingTransformer : regolith/data/settings/transformers/Transformer {
+	public fun <init> (Ljava/lang/Object;)V
+	public fun reverseTransform (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun transform (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class regolith/data/settings/transformers/NoTransformation : regolith/data/settings/transformers/Transformer {
+	public fun <init> ()V
+	public fun reverseTransform (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun transform (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class regolith/data/settings/transformers/NullCoalesceStringTransformer : regolith/data/settings/transformers/Transformer {
+	public static final field INSTANCE Lregolith/data/settings/transformers/NullCoalesceStringTransformer;
+	public synthetic fun reverseTransform (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun reverseTransform (Ljava/lang/String;)Ljava/lang/String;
+	public synthetic fun transform (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun transform (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public abstract interface class regolith/data/settings/transformers/Transformer {
+	public abstract fun reverseTransform (Ljava/lang/Object;)Ljava/lang/Object;
+	public abstract fun transform (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class regolith/data/settings/transformers/TransformerKt {
+	public static final fun reverse (Lregolith/data/settings/transformers/Transformer;)Lregolith/data/settings/transformers/Transformer;
+	public static final fun then (Lregolith/data/settings/transformers/Transformer;Lregolith/data/settings/transformers/Transformer;)Lregolith/data/settings/transformers/Transformer;
+}
+
+public final class regolith/data/settings/transformers/TrimmingTransformer : regolith/data/settings/transformers/Transformer {
+	public static final field INSTANCE Lregolith/data/settings/transformers/TrimmingTransformer;
+	public synthetic fun reverseTransform (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun reverseTransform (Ljava/lang/String;)Ljava/lang/String;
+	public synthetic fun transform (Ljava/lang/Object;)Ljava/lang/Object;
+	public fun transform (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public abstract interface class regolith/data/settings/validators/InputValidator {
+	public abstract fun validate (Ljava/lang/Object;)Lregolith/data/settings/validators/ValidationResult;
+}
+
+public final class regolith/data/settings/validators/InputValidatorKt {
+	public static final fun plus (Lregolith/data/settings/validators/InputValidator;Lregolith/data/settings/validators/InputValidator;)Lregolith/data/settings/validators/InputValidator;
+}
+
+public final class regolith/data/settings/validators/PassingValidator : regolith/data/settings/validators/InputValidator {
+	public static final field INSTANCE Lregolith/data/settings/validators/PassingValidator;
+	public fun validate (Ljava/lang/Object;)Lregolith/data/settings/validators/ValidationResult;
+}
+
+public abstract interface class regolith/data/settings/validators/ValidationResult {
+}
+
+public final class regolith/data/settings/validators/ValidationResult$Failed : regolith/data/settings/validators/ValidationResult {
+	public fun <init> (Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;)Lregolith/data/settings/validators/ValidationResult$Failed;
+	public static synthetic fun copy$default (Lregolith/data/settings/validators/ValidationResult$Failed;Ljava/util/List;ILjava/lang/Object;)Lregolith/data/settings/validators/ValidationResult$Failed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReasons ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class regolith/data/settings/validators/ValidationResult$Success : regolith/data/settings/validators/ValidationResult {
+	public static final field INSTANCE Lregolith/data/settings/validators/ValidationResult$Success;
+}
+

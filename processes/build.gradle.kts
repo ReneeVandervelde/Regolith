@@ -11,6 +11,7 @@ kotlin {
                 implementation(projects.timeMachine)
                 api(projects.init)
                 api(libs.kotlinx.datetime)
+                implementation(projects.data)
             }
         }
 

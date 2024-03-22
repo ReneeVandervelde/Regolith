@@ -1,0 +1,13 @@
+CREATE TABLE SETTINGS(
+    key TEXT PRIMARY KEY,
+    stringValue TEXT,
+    intValue INTEGER,
+    realValue REAL,
+    blobValue BLOB
+);
+
+setStringValue:
+INSERT OR REPLACE INTO SETTINGS (key, stringValue) VALUES (?, ?);
+
+getStringValue:
+SELECT stringValue FROM SETTINGS WHERE key = ?;
