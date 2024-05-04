@@ -441,31 +441,10 @@ public final class regolith/data/settings/structure/RequiredStringSetting : rego
 public abstract interface class regolith/data/settings/structure/Setting : regolith/data/settings/Described, regolith/data/settings/Keyed {
 }
 
-public final class regolith/data/settings/structure/SettingsCollection : java/util/Collection, kotlin/jvm/internal/markers/KMappedMarker {
-	public fun <init> (Ljava/util/Collection;)V
-	public fun <init> ([Lregolith/data/settings/structure/Setting;)V
-	public synthetic fun add (Ljava/lang/Object;)Z
-	public fun add (Lregolith/data/settings/structure/Setting;)Z
-	public fun addAll (Ljava/util/Collection;)Z
-	public fun clear ()V
-	public final fun contains (Ljava/lang/Object;)Z
-	public fun contains (Lregolith/data/settings/structure/Setting;)Z
-	public fun containsAll (Ljava/util/Collection;)Z
-	public final fun findByKey (Ljava/lang/String;)Lregolith/data/settings/structure/Setting;
-	public fun getSize ()I
-	public final fun groupByCategory ()Ljava/util/List;
-	public final fun groupByLevel ()Ljava/util/List;
-	public fun isEmpty ()Z
-	public fun iterator ()Ljava/util/Iterator;
-	public final fun plus (Lregolith/data/settings/structure/SettingsCollection;)Lregolith/data/settings/structure/SettingsCollection;
-	public fun remove (Ljava/lang/Object;)Z
-	public fun removeAll (Ljava/util/Collection;)Z
-	public fun removeIf (Ljava/util/function/Predicate;)Z
-	public fun retainAll (Ljava/util/Collection;)Z
-	public final fun size ()I
-	public fun toArray ()[Ljava/lang/Object;
-	public fun toArray ([Ljava/lang/Object;)[Ljava/lang/Object;
-	public fun toString ()Ljava/lang/String;
+public final class regolith/data/settings/structure/SettingsCollectionsKt {
+	public static final fun findByKey (Ljava/util/Collection;Ljava/lang/String;)Lregolith/data/settings/structure/Setting;
+	public static final fun groupByCategory (Ljava/util/Collection;)Ljava/util/List;
+	public static final fun groupByLevel (Ljava/util/Collection;)Ljava/util/List;
 }
 
 public final class regolith/data/settings/structure/StringData : regolith/data/settings/structure/DataSetting {

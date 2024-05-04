@@ -13,9 +13,7 @@ Change Log
 
 ### Added
 
- - Add convenience constructor to `SettingsCollection` for creating a collection
-   from a vararg list of settings.
- - Add `plus` operator function to `SettingsCollection`
+ - Added Extension methods for Setting Collections.
 
 1.3.0
 -----
